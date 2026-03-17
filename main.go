@@ -1,6 +1,7 @@
 package main
 
 import (
+	"ascii-art/utils"
 	"fmt"
 	"os"
 )
@@ -13,6 +14,6 @@ func main() {
 
 	input := os.Args[1]
 
-	output := AsciiArt(input)
+	output := utils.AsciiArt(input)
 	fmt.Print(output)
 }
