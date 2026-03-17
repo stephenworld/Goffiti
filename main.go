@@ -1,8 +1,8 @@
 package main
 
 import (
-	"goffiti/utils"
 	"fmt"
+	"goffiti/utils"
 	"os"
 )
 
