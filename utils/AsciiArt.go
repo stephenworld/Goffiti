@@ -13,22 +13,37 @@ func AsciiArt(str string) string {
 		return ""
 	}
 
-	content := strings.ReplaceAll(string(standardAscii), "\r\n", "\n")
+	content := string(standardAscii)
 	lines := strings.Split(content, "\n")
+
+	inputParts := strings.Split(str, "\\n")
 
 	if len(str) <= 0 {
 		return ""
 	}
 
 	result := ""
-	for row := 0; row < 8; row++ {
-		for _, char := range str {
-			charLines := GetCharLines(char, lines)
-			result += charLines[row]
-		}
-		result += "\n"
+	onlyNewLine := str == "\\n"
+
+	if onlyNewLine {
+		return "\n"
 	}
 
+	for _, part := range inputParts {
+		if part == "" {
+			if len(inputParts) > 1 {
+				result += "\n"
+			}
+			continue
+		}
+		for row := 0; row < 8; row++ {
+			for _, char := range part {
+				charLines := GetCharLines(char, lines)
+				result += charLines[row]
+			}
+			result += "\n"
+		}
+	}
 	return result
 }
 
