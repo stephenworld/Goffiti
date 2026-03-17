@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Println("Error: Expected 2 arguments")
+	if len(os.Args) < 2 {
+		fmt.Println("Error: Expected atleast 2 arguments")
 		return
 	}
 

@@ -7,7 +7,16 @@ import (
 )
 
 func AsciiArt(str string) string {
-	standardAscii, err := os.ReadFile("utils/standard.ascii")
+	font := "utils/standard.ascii"
+	fontArgs := ""
+	if len(os.Args) == 3 {
+		fontArgs := os.Args[2]
+		font = HandleFont(fontArgs)
+	}
+
+	_ = fontArgs
+
+	standardAscii, err := os.ReadFile(font)
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		return ""
