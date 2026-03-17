@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ascii-art/utils"
+	"goffiti/utils"
 	"fmt"
 	"os"
 )
