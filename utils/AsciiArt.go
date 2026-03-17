@@ -8,13 +8,10 @@ import (
 
 func AsciiArt(str string) string {
 	font := "utils/standard.ascii"
-	fontArgs := ""
 	if len(os.Args) == 3 {
 		fontArgs := os.Args[2]
 		font = HandleFont(fontArgs)
 	}
-
-	_ = fontArgs
 
 	standardAscii, err := os.ReadFile(font)
 	if err != nil {
