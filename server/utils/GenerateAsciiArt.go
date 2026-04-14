@@ -26,6 +26,9 @@ func GenerateAsciiArt(STRING, BANNER string) string {
 				if char == '\n' || char == '\r' {
 					continue
 				}
+				if char < 32 || char > 126 {
+					continue
+				}
 				charLine := GetCharLine(char, lines)
 				art.WriteString(charLine[idx])
 			}
