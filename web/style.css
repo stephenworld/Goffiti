@@ -1,23 +1,20 @@
 /* Reset & Variables */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
 }
 
 :root {
-    --bg-main: #000000;
-    --bg-content: #2f4f4f; /* DarkSlateGrey */
-    --bg-form: #a9a9a9;    /* DarkGrey */
-    --text-light: #ffffff;
-    --text-dark: #000000;
-    --radius: 1rem;
+  --bg-content: #2f4f4f; /* DarkSlateGrey */
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-light);
-    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
     line-height: 1.5;
 }
 
@@ -27,24 +24,25 @@ body {
 
 }
 
-/* Layout Container */
+.form-input{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
 main {
-    display: grid;
     max-width: 45rem;
     margin: auto;
-    padding: 0 1rem;
 }
 
-/* Main Form Area (Spans 2 columns) */
 .form {
-    grid-column: 1 / 3;
-    background-color: var(--bg-form);
-    color: var(--text-dark);
+    background-color: #a9a9a9;
+    color: #000000;
     padding: 1.5rem;
-    border-radius: var(--radius);
+    border-radius: 1rem;
 }
 
-/* Typography */
 h1 {
     font-size: 1.25rem;
     text-align: center;
@@ -62,17 +60,16 @@ p {
     margin-bottom: 0.5rem;
 }
 
-/* Form Elements */
 form {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping on smaller containers */
+    flex-wrap: wrap; 
     justify-content: space-between;
     gap: 1rem;
 }
 
 form div {
     flex: 1;
-    min-width: 200px; /* Prevents squishing */
+    min-width: 200px; 
 }
 
 textarea,
@@ -80,16 +77,17 @@ select,
 button,
 input {
     display: block;
-    width: 100%; /* Better than fixed min-width for responsiveness */
-    padding: 0.6rem;
+    width: 100%; 
+    padding: 0.76rem;
     margin-top: 0.25rem;
     border: 1px solid #888;
     border-radius: 0.25rem;
 }
 
 textarea {
-    resize: vertical;
     min-height: 100px;
+    max-height: 100px;
+    resize: none;
 }
 
 button {
