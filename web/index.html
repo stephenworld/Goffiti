@@ -22,7 +22,7 @@
                 <option value="thinkertoy">Thinkertoy</option>
               </select>
             </div>
-            <button type="submit">Submit</button>
+            <button id="submit" type="submit">Submit</button>
           </div>
 
           <div>
@@ -36,7 +36,17 @@
   </section>
 
   <article class="art">
+    <div id="art-action">
+      <button onclick="handleCopy(`{{ . }}`)" class="custom-button">
+        Copy <img src="/web/images/paste.png" alt="Copy icon" />
+      </button>
+
+      <button onclick="handleDownload(`{{ . }}`)" class="custom-button">
+        Download<img src="/web/images/inbox.png" alt="Download icon">
+      </button>
+    </div>
     <pre>{{ . }}</pre>
   </article>
+  <script src="/web/index.js"></script>
 </body>
 </html>
