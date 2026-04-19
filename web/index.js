@@ -1,6 +1,6 @@
 function handleCopy(output){
     if (output == ""){
-        alert("fill the form")
+       alert("Nothing to copy. Please generate your art first.")
     }else{
         navigator.clipboard.writeText(output)
         alert("Art Successfully copied to clipboard")
@@ -9,7 +9,7 @@ function handleCopy(output){
 
 function handleDownload(output){
     if (output == ""){
-        alert("Submit the form")
+       alert("No content available to download. Please submit the form.")
     }else{
         downloadFile(String(output),"art.txt","text/plain")
     }
