@@ -7,6 +7,12 @@ import (
 	"stylize/server/utils"
 )
 
+type DATA struct {
+	ART   string
+	INPUT string
+	FONT  string
+}
+
 func main() {
 	page, _ := template.ParseFiles("web/index.html")
 	fmt.Println("Server live at http://localhost:8080/")
@@ -16,8 +22,8 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
-			data := utils.GenerateAsciiArt("Error 404.\nPage not found", "server/banners/standard.txt")
-			page.Execute(w, data)
+			art := utils.GenerateAsciiArt("Error 404.\nPage not found", "server/banners/standard.txt")
+			page.Execute(w, DATA{ART: art})
 			return
 		}
 
@@ -30,18 +36,18 @@ func main() {
 		BANNER = utils.HandleFont(BANNER)
 
 		if BANNER == "" || STRING == "" {
-			data := utils.GenerateAsciiArt("Error 400.\nBad Request", "server/banners/standard.txt")
-			page.Execute(w, data)
+			art := utils.GenerateAsciiArt("Error 400.\nBad Request", "server/banners/standard.txt")
+			page.Execute(w, DATA{ART: art, INPUT: STRING, FONT: BANNER})
 			return
 		}
 
 		art := utils.GenerateAsciiArt(STRING, BANNER)
 		if art == "" {
-			data := utils.GenerateAsciiArt("Error 500.\nServer Error", "server/banners/standard.txt")
-			page.Execute(w, data)
+			art := utils.GenerateAsciiArt("Error 500.\nServer Error", "server/banners/standard.txt")
+			page.Execute(w, DATA{ART: art, INPUT: STRING, FONT: BANNER})
 			return
 		}
-		page.Execute(w, art)
+		page.Execute(w, DATA{ART: art, INPUT: STRING, FONT: BANNER})
 	})
 
 	http.ListenAndServe(":8080", nil)

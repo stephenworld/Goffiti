@@ -17,9 +17,9 @@
               <p>ASCII Art font:</p>
               <select name="font" id="font">
                 <option value="--">---</option>
-                <option value="standard">Standard</option>
-                <option value="shadow">Shadow</option>
-                <option value="thinkertoy">Thinkertoy</option>
+                <option value="standard" {{if eq .FONT "server/banners/standard.txt"}}selected{{end}}>Standard</option>
+                <option value="shadow" {{if eq .FONT "server/banners/shadow.txt"}}selected{{end}}>Shadow</option>
+                <option value="thinkertoy" {{if eq .FONT "server/banners/thinkertoy.txt"}}selected{{end}}>Thinkertoy</option>
               </select>
             </div>
             <button id="submit" type="submit">Submit</button>
@@ -27,7 +27,7 @@
 
           <div>
             <p>Input text:</p>
-            <textarea name="input" id="input" placeholder="Type Something"></textarea>
+            <textarea name="input" id="input" placeholder="Type Something">{{ .INPUT }}</textarea>
           </div>
         </form>
       </section>
@@ -37,16 +37,16 @@
 
   <article class="art">
     <div id="art-action">
-      <button onclick="handleCopy(`{{ . }}`)" class="custom-button">
-        Copy <img src="/web/images/paste.png" alt="Copy icon" />
-      </button>
-
-      <button onclick="handleDownload(`{{ . }}`)" class="custom-button">
+      <button onclick="handleDownload(`{{ .ART }}`)" class="custom-button">
         Download<img src="/web/images/inbox.png" alt="Download icon">
       </button>
+      <button onclick="handleCopy(`{{ .ART }}`)" class="custom-button">
+        Copy <img src="/web/images/paste.png" alt="Copy icon" />
+      </button>
     </div>
-    <pre>{{ . }}</pre>
+    <pre>{{ .ART }}</pre>
   </article>
+
   <script src="/web/index.js"></script>
 </body>
 </html>

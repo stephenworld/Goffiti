@@ -120,7 +120,7 @@ textarea {
     color: white;
     cursor: pointer;
 }
-.custom-button img{
+.custom-button img {
     width: 1rem;
     object-fit:contain;
     height: 1rem;
@@ -130,7 +130,7 @@ button:hover {
     opacity: 0.9;
 }
 
-pre{
+pre {
   width: 100svw;
   overflow: scroll;
   padding: 1rem;
