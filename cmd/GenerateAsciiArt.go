@@ -1,35 +1,39 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
 
-func GenerateAsciiArt(STR string) string {
-	font, err := os.ReadFile("banners/standard.txt")
+func GenerateAsciiArt(BANNER, STRING string) string {
+	font, err := os.ReadFile(BANNER)
 	if err != nil {
-		fmt.Printf("Error: %v", err)
+		return err.Error()
 	}
 
 	fontLines := strings.Split(string(font), "\n")
-	strLines := strings.Split(STR, "\\n")
+	stringLines := strings.Split(STRING, "\\n")
 
-	var ART strings.Builder
+	var art strings.Builder
 
-	for _, word := range strLines {
-		if word == "" {
-			ART.WriteString("\n")
+	for _, line := range stringLines {
+		if line == "" {
+			art.WriteString("\n")
 			continue
 		}
+
 		for idx := range 8 {
-			for _, char := range word {
+			for _, char := range line {
+				if char < 32 && char > 126 {
+					continue
+				}
 				charLine := GetCharLine(char, fontLines)
-				ART.WriteString(charLine[idx])
+				art.WriteString(charLine[idx])
 			}
-			ART.WriteString("\n")
+
+			art.WriteString("\n")
 		}
 	}
 
-	return ART.String()
+	return art.String()
 }
