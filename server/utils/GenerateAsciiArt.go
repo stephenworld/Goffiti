@@ -23,7 +23,7 @@ func GenerateAsciiArt(STRING, BANNER string) string {
 		}
 		for idx := range 8 {
 			for _, char := range word {
-				if char == '\n' || char == '\r' {
+				if char == '\n' {
 					continue
 				}
 				if char < 32 || char > 126 {

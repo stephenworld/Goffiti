@@ -15,15 +15,19 @@ type DATA struct {
 
 func main() {
 	page, _ := template.ParseFiles("web/index.html")
+	errorPage, _ := template.ParseFiles("web/404.html")
+
 	fmt.Println("Server live at http://localhost:8080/")
 
 	fs := http.FileServer(http.Dir("./web"))
 	http.Handle("/web/", http.StripPrefix("/web/", fs))
 
+	STRING, BANNER := "", ""
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			art := utils.GenerateAsciiArt("Error 404.\nPage not found", "server/banners/standard.txt")
-			page.Execute(w, DATA{ART: art})
+			errorPage.Execute(w, art)
 			return
 		}
 
@@ -32,7 +36,10 @@ func main() {
 			return
 		}
 
-		STRING, BANNER := r.FormValue("input"), r.FormValue("font")
+	})
+
+	http.HandleFunc("/ascii-art", func(w http.ResponseWriter, r *http.Request) {
+		STRING, BANNER = r.FormValue("input"), r.FormValue("font")
 		BANNER = utils.HandleFont(BANNER)
 
 		if BANNER == "" || STRING == "" {
