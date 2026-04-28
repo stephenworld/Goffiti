@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ascii Art Stylize</title>
   <link rel="stylesheet" href="/web/style.css">
 </head>
+
 <body>
   <section class="form-content">
     <main>
@@ -17,9 +19,10 @@
               <p>ASCII Art font:</p>
               <select name="font" id="font">
                 <option value="--">---</option>
-                <option value="standard" {{if eq .FONT "server/banners/standard.txt"}}selected{{end}}>Standard</option>
-                <option value="shadow" {{if eq .FONT "server/banners/shadow.txt"}}selected{{end}}>Shadow</option>
-                <option value="thinkertoy" {{if eq .FONT "server/banners/thinkertoy.txt"}}selected{{end}}>Thinkertoy</option>
+                <option value="standard" {{if eq .FONT "server/banners/standard.txt" }}selected{{end}}>Standard</option>
+                <option value="shadow" {{if eq .FONT "server/banners/shadow.txt" }}selected{{end}}>Shadow</option>
+                <option value="thinkertoy" {{if eq .FONT "server/banners/thinkertoy.txt" }}selected{{end}}>Thinkertoy
+                </option>
               </select>
             </div>
             <button id="submit" type="submit">Submit</button>
@@ -49,4 +52,5 @@
 
   <script src="/web/index.js"></script>
 </body>
+
 </html>
