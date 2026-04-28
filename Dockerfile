@@ -1,26 +1,31 @@
-# Stage 1: Build the binary
+# Build stage
 FROM golang:1.22-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Copy go.mod and go.sum first to leverage Docker cache
+# Copy the Go module file
 COPY go.mod ./
-RUN go mod download
 
-# Copy the rest of the source code
+# Copy the rest of the application source code
 COPY . .
 
-# Build the application as a static binary
+# Build the binary with CGO disabled for an Alpine environment
 RUN CGO_ENABLED=0 GOOS=linux go build -o goffiti .
 
-# Stage 2: Final lightweight image
+# Final minimal stage
 FROM alpine:latest
 
-WORKDIR /root/
+WORKDIR /app
 
-# Copy only the compiled binary from the builder stage
+# Copy the compiled binary
 COPY --from=builder /app/goffiti .
 
-# Since it's a CLI tool, we use ENTRYPOINT so users can pass flags
-ENTRYPOINT ["./goffiti"]
+# Copy the runtime assets
+COPY --from=builder /app/web ./web
+COPY --from=builder /app/server ./server
+
+# Expose the application port
+EXPOSE 8080
+
+# Command to run the application
+CMD ["./goffiti"]
