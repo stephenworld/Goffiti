@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dockerize</title>
+</head>
+<body>
+  <form action="/ascii-art" method="post">
+    <input type="text" name="string" id="string">
+    <br />
+    <select name="banner" id="banner">
+      <option value="---">---</option>
+      <option value="standard">standard</option>
+      <option value="shadow">shadow</option>
+      <option value="thinkertoy">thinkertoy</option>
+    </select>
+    <br />
+    <button type="submit">Generate</button>
+  </form>
+
+  <pre>
+    {{.}}
+  </pre>
+</body>
+</html>
