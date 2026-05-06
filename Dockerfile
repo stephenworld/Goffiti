@@ -1,6 +1,9 @@
 # Build stage
 FROM golang:1.22-alpine AS builder
 
+# Install git if your private modules require it
+RUN apk add --no-cache git
+
 WORKDIR /app
 
 # Copy the Go module file
@@ -12,8 +15,12 @@ COPY . .
 # Build the binary with CGO disabled for an Alpine environment
 RUN CGO_ENABLED=0 GOOS=linux go build -o goffiti .
 
-# Final minimal stage
-FROM alpine:latest
+
+# --- Final stage: Use Debian Slim for Bash support ---
+FROM debian:bookworm-slim
+
+# Recommended: install ca-certificates so your app can make HTTPS calls
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
