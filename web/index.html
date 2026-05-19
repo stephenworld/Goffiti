@@ -4,23 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dockerize</title>
+  <link rel="stylesheet" href="/web/style.css">
 </head>
 <body>
-  <form action="/ascii-art" method="post">
-    <input type="text" name="string" id="string">
-    <br />
-    <select name="banner" id="banner">
-      <option value="---">---</option>
-      <option value="standard">standard</option>
-      <option value="shadow">shadow</option>
-      <option value="thinkertoy">thinkertoy</option>
-    </select>
-    <br />
-    <button type="submit">Generate</button>
-  </form>
+  <section class="form-content">
+    <main>
+      <section class="form">
+        <h1>Text to ASCII Art Generator: Create ASCII Art from Text</h1>
+        <form action="/ascii-art" method="POST">
+          <div class="form-input">
+            <div>
+              <p>ASCII Art font:</p>
+              <select name="font" id="font">
+                <option value="--">---</option>
+                <option value="standard" {{if eq .FONT "server/banners/standard.txt"}}selected{{end}}>Standard</option>
+                <option value="shadow" {{if eq .FONT "server/banners/shadow.txt"}}selected{{end}}>Shadow</option>
+                <option value="thinkertoy" {{if eq .FONT "server/banners/thinkertoy.txt"}}selected{{end}}>Thinkertoy</option>
+              </select>
+            </div>
+            <button type="submit">Submit</button>
+          </div>
 
-  <pre>
-    {{.}}
-  </pre>
+          <div>
+            <p>Input text:</p>
+            <textarea name="input" id="input" placeholder="Type Something">{{ .INPUT }}</textarea>
+          </div>
+        </form>
+      </section>
+    </main>
+
+  </section>
+
+  <article class="art">
+    <pre>{{ .ART }}</pre>
+  </article>
 </body>
 </html>

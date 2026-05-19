@@ -1,6 +1,6 @@
 package utils
 
-func GetCharLines(char rune, lines []string) []string {
-	startLine := ((char - ' ') * 9) + 1
+func GetCharLine(char rune, lines []string) []string {
+	startLine := (char-' ')*9 + 1
 	return lines[startLine : startLine+8]
 }
