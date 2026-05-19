@@ -19,6 +19,10 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o goffiti .
 # --- Final stage: Use Debian Slim for Bash support ---
 FROM debian:bookworm-slim
 
+LABEL maintainer="Stephen Adewale"
+LABEL project="goffiti"
+LABEL stage="builder"
+
 # Recommended: install ca-certificates so your app can make HTTPS calls
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
